@@ -1,0 +1,908 @@
+#-------------------------------------------------------------------------------
+#
+#	-- GeoEasy message file
+#
+#-------------------------------------------------------------------------------
+global fileTypes saveTypes projTypes trTypes trHTypes tr1Types tr2Types \
+	tinTypes polyTypes vrmlTypes kmlTypes xmlTypes grdTypes txpTypes \
+	cadTypes mskTypes lstTypes docTypes csvTypes tclTypes webTypes
+global geoCodes
+global geoEasyMsg
+
+# regression types
+global reglist
+set reglist { "2D Line" "Parallel 2D lines" "Circle" \
+	"Plane" "Horizontal plane" "Vertical plane" \
+	"Sphere" "3D line"} ;# "Vertical paraboloid" 
+
+set fileTypes {
+	{"Format GeoEasy" {.geo .GEO}}
+	{"Format Geodimeter" {.job .are .JOB .ARE}}
+	{"Format Sokkia set 4" {.set .scr .SET .SCR}}
+	{"Format Sokkia sdr" {.sdr .crd .SDR .CRD}}
+	{"Format Leica GSI" {.wld .gre .gsi .WLD .GRE .GSI}}
+	{"Format Leica IDEX" {.idx .IDX}}
+	{"Format TopCon GTS-700" {.700 .yxz .gts7 .YXZ .GTS7}}
+	{"Format TopCon GTS-210" {.210}}
+	{"Format Trimble M5" {.m5 .M5}}
+	{"Format SurvCE RAW" {.rw5 .RW5}}
+	{"Format n4ce txt" {.n4c N4C}}
+	{"Format Nikon DTM-300" {.nik .NIK}}
+	{"Format Geodat 124" {.gdt .GDT}}
+	{"Format GeoProfi" {.mjk .MJK}}
+	{"Format coordonnées GeoProfi" {.eov .szt .her .hkr .hdr .EOV .SZT .HER .HKR .HDR}}
+	{"Format GeoCalc3" {.gmj .GMJ}}
+	{"Format GeoZseni" {.gjk .GJK}}
+	{"Liste de coordonnées" {.txt .csv .dat .pnt .TXT .CSV .DAT .PNT}}
+	{"Carnet de terrain" {.dmp .DMP}}
+	{"Fichier MNT GRID" {.asc .arx .ASC .ARX}}
+	{"Fichier AutoCAD DXF" {.dxf .DXF}}
+	{"Tous les fichiers" {.*}}
+}
+
+set saveTypes {
+	{"GeoEasy format" {.geo}}
+	{"Coordonnées Geodimeter" {.are}}
+	{"Mesures et coordonnées Geodimeter" {.job}}
+	{"Sokkia set 4 coordinates" {.scr}}
+	{"Sokkia sdr33 coordinates" {.sdr}}
+	{"Leica coordinates 8 bytes" {.wld}}
+	{"Leica coordinates 16 bytes" {.gsi}}
+	{"Nikon DTM-300 coordinates" {.nik}}
+	{"Carnet de terrain" {.dmp}}
+	{"Coordinate list" {.csv}}
+	{"ITR 2.x Coordinate list" {.itr}}
+	{"GPS Trackmaker" {.txt}}
+	{"GPS XML" {.gpx}}
+	{"Keyhole Markup Language file" {.kml}}
+}
+
+set xmlTypes {
+	{"GNU GaMa xml for 2D adjustment" {.g2d}}
+	{"GNU GaMa xml for 1D adjustment" {.g1d}}
+	{"GNU GaMa xml for 3D adjustment" {.g3d}}
+}
+
+set projTypes {{"Projet GeoEasy" {.gpr}}
+}
+
+set trTypes {{"Transformation affine" {.prm}}
+}
+
+set trHTypes {{"Vertical shift" {.vsh}}
+}
+
+set tr1Types {{"Orthogonal/Affin transformation" {.prm}}
+}
+
+set tr2Types {{"TRAFO transformation" {.all}}
+}
+
+set tinTypes {{"MNT GeoEasy" {.dtm}}
+}
+
+set polyTypes {{"GeoEasy dtm source file" {.poly}}
+}
+
+set vrmlTypes {{"Virtual reality file" {.wrl}}
+}
+
+set kmlTypes {{"Keyhole Markup Language file" {.kml}}
+}
+
+set grdTypes {{"ESRI ASCII GRID" {.asc}}
+	{"GRASS ASCII GRID" {.arx}}
+}
+
+set txpTypes {{"Txt/csv file definition .txp" {.txp}}
+}
+
+set cadTypes {{"AutoCAD DXF" {.dxf}}
+}
+
+set mskTypes {{"GeoEasy mask" {.msk}}
+}
+
+set lstTypes {{"Text list" {.lst}}
+}
+
+set webTypes {{"Home page" {.html}}
+}
+
+set docTypes {{"Rich Text Format" {.rtf}}
+}
+
+set csvTypes {{"Comma Separated Values" {.csv}}
+}
+
+set tclTypes {{"Script Tcl" {.tcl}}
+}
+
+#
+#	codes used in geo data set
+#
+set geoCodes(-1)	"Skip"
+set geoCodes(0)		"Information"
+set geoCodes(1)		"Data used in INFO/DATA combination"
+set geoCodes(2)		"N° station"
+set geoCodes(3)		"Hauteur d'instrument"
+set geoCodes(4)		"Point code"
+set geoCodes(5)		"N° point"
+set geoCodes(6)		"Signal height"
+set geoCodes(7)		"Angle horizontal"
+set geoCodes(8)		"Angle vertical"
+set geoCodes(9)		"Distance inclinée"
+set geoCodes(10)	"Height diff"
+set geoCodes(120)	"Height diff. leveling" 
+set geoCodes(11)	"Distance horizontale"
+set geoCodes(12)	"Superficie"
+set geoCodes(13)	"Volume"
+set geoCodes(14)	"Percent of grade"
+set geoCodes(15)	"Area file"
+set geoCodes(16)	"C1-C2"
+set geoCodes(17)	"HAII"
+set geoCodes(18)	"VAII"
+set geoCodes(19)	"dV"
+set geoCodes(20)	"Offset constant to slope distance"
+set geoCodes(21)	"Horizontal ref. angle"
+set geoCodes(22)	"Compensator"
+set geoCodes(23)	"Units"
+set geoCodes(24)	"HAI"
+set geoCodes(25)	"VAI"
+set geoCodes(26)	"SVA"
+set geoCodes(27)	"SHA"
+set geoCodes(28)	"SHD"
+set geoCodes(29)	"SHT"
+set geoCodes(30)	"Atmospheric correction PPM"
+set geoCodes(37)	"Northing"
+set geoCodes(38)	"Easting"
+set geoCodes(39)	"Elevation"
+set geoCodes(40)	"dN"
+set geoCodes(41)	"dE"
+set geoCodes(42)	"dELE"
+set geoCodes(43)	"UTMSC"
+set geoCodes(44)	"Slope inclination"
+set geoCodes(45)	"dHA"
+set geoCodes(46)	"Standard deviation"
+set geoCodes(47)	"Rel. north coord."
+set geoCodes(48)	"Rel. east coord."
+set geoCodes(49)	"Vertical distance"
+set geoCodes(50)	"Job number"
+set geoCodes(51)	"Date"
+set geoCodes(52)	"Time"
+set geoCodes(53)	"Operator id"
+set geoCodes(54)	"Project id"
+set geoCodes(55)	"Instrument id"
+set geoCodes(56)	"Temperature"
+set geoCodes(57)	"Blank line"
+set geoCodes(58)	"Earth radius"
+set geoCodes(59)	"Refraction"
+set geoCodes(60)	"Shot identity"
+set geoCodes(61)	"Activity code"
+set geoCodes(62)	"Reference object"
+set geoCodes(63)	"Diameter"
+set geoCodes(64)	"Radius"
+set geoCodes(65)	"Geometry"
+set geoCodes(66)	"Figure"
+set geoCodes(67)	"SON"
+set geoCodes(68)	"SOE"
+set geoCodes(69)	"SHT"
+set geoCodes(72)	"Radoffs"
+set geoCodes(73)	"Rt.offs"
+set geoCodes(74)	"Air pressure"
+set geoCodes(75)	"dHT"
+set geoCodes(76)	"dHD"
+set geoCodes(77)	"dHA"
+set geoCodes(78)	"com"
+set geoCodes(79)	"END"
+set geoCodes(80)	"Section"
+set geoCodes(81)	"A-parameter"
+set geoCodes(82)	"Section interval"
+set geoCodes(83)	"Cl.ofs"
+set geoCodes(100)	"Orientation angle"
+set geoCodes(101)	"Average orientation angle"
+set geoCodes(102)	"Prelim. orientation"
+set geoCodes(103)	"Average prelim. orientation"
+set geoCodes(110)	"Observer"
+set geoCodes(111)	"Point order"
+set geoCodes(112)	"Repeat count"
+set geoCodes(114)	"Direction stddev \[\"\]"
+set geoCodes(115)	"Distance stddev (additive) \[mm\]"
+set geoCodes(116)	"Distance stddev (multiplyer) \[ppm\]"
+set geoCodes(117)	"Total length"
+set geoCodes(118)	"Leveling stddev \[mm/km\]"
+set geoCodes(137)	"Northing prelim."
+set geoCodes(138)	"Easting prelim."
+set geoCodes(139)	"Height prelim."
+set geoCodes(140)	"EPSG code"
+set geoCodes(237)	"Northing stdev"
+set geoCodes(238)	"Easting stdev"
+set geoCodes(239)	"Height stdev"
+
+#
+#	general messages button names
+#
+set geoEasyMsg(warning)		"warning"		;# TODO
+set geoEasyMsg(error)		"error"		;# TODO
+set geoEasyMsg(info)		"info"		;# TODO
+set geoEasyMsg(ok)			"OK"		;# TODO
+set geoEasyMsg(yes)			"Yes"		;# TODO
+set geoEasyMsg(no)			"No"		;# TODO
+set geoEasyMsg(cancel)		"Cancel"		;# TODO
+set geoEasyMsg(loadbut)		"Load"		;# TODO
+set geoEasyMsg(savebut)		"Save"		;# TODO
+set geoEasyMsg(all)			"All"		;# TODO
+set geoEasyMsg(ende)		"Finish"		;# TODO
+set geoEasyMsg(ignore)		"No warnings"		;# TODO
+set geoEasyMsg(wait)		"Wait"		;# TODO
+set geoEasyMsg(help)		"Aide"
+set geoEasyMsg(find)		"Rechercher"
+set geoEasyMsg(findNext)	"Rechercher le suivant"
+set geoEasyMsg(delete)		"Delete"		;# TODO
+set geoEasyMsg(add)			"Add"		;# TODO
+set geoEasyMsg(newObs)		"New observation"		;# TODO
+set geoEasyMsg(newSt)		"New station"		;# TODO
+set geoEasyMsg(newCoo)		"New point"		;# TODO
+set geoEasyMsg(insSt)		"Insert station record"		;# TODO
+set geoEasyMsg(delSt)		"Delete station record"		;# TODO
+set geoEasyMsg(finalCoo)	"Preliminary -> final coordinates"		;# TODO
+set geoEasyMsg(lastPoint)	"End point"		;# TODO
+set geoEasyMsg(browse)		"Browse ..."		;# TODO
+set geoEasyMsg(up)			"Up"		;# TODO
+set geoEasyMsg(down)		"Down"		;# TODO
+set geoEasyMsg(opensource)	"Open source GPL 2"		;# TODO
+#
+#	labels
+#
+set geoEasyMsg(pattern)		"Pattern:"		;# TODO
+#
+#	menu and title texts
+#
+set geoEasyMsg(maskTitle)		"Select mask"		;# TODO
+set geoEasyMsg(graphTitle)		"Graphic window"		;# TODO
+set geoEasyMsg(lbTitle)			"Select %d items"		;# TODO
+set geoEasyMsg(lbTitle1)		"Select at least %d items"		;# TODO
+set geoEasyMsg(lbTitle2)		"Select unknown points"		;# TODO
+set geoEasyMsg(lbTitle3)		"Select %d station"		;# TODO
+set geoEasyMsg(lbTitle4)		"Select coordinate"		;# TODO
+set geoEasyMsg(lbTitle5)		"Select known points"		;# TODO
+set geoEasyMsg(lbReg)			"Regression type"		;# TODO
+set geoEasyMsg(refTitle)		"Reference direction"		;# TODO
+set geoEasyMsg(soTitle)			"Point setting out"		;# TODO
+set geoEasyMsg(l1Title)			"Première ligne"
+set geoEasyMsg(l2Title)			"Seconde ligne"
+set geoEasyMsg(p1Title)			"Premier point"
+set geoEasyMsg(p2Title)			"Second point"
+set geoEasyMsg(menuFile)		"Fichier"
+set geoEasyMsg(menuFileNew)		"Nouveau..."		
+set geoEasyMsg(menuFileLoad)	"Charger..."
+set geoEasyMsg(menuFileLogLoad) "Charger le journal d'événements"
+set geoEasyMsg(menuFileLogClear) "Vider le journal d'événements"
+set geoEasyMsg(menuFileTclLoad) "Charger un fichier tcl"
+set geoEasyMsg(menuFileUnload)	"Fermer"
+set geoEasyMsg(menuFileSave)	"Enregistrer"
+set geoEasyMsg(menuFileSaveAll)	"Enregistrer tout"
+set geoEasyMsg(menuFileSaveAs)	"Enregistrer sous..."
+set geoEasyMsg(menuFileJoin)	"Fusionner..."
+set geoEasyMsg(menuFileExport)	"Export vers GNU Gama..."
+set geoEasyMsg(menuProjLoad)	"Charger un projet..."
+set geoEasyMsg(menuProjSave)	"Enregistrer le projet..."
+set geoEasyMsg(menuProjClose)	"Fermer le projet"
+set geoEasyMsg(menuComEasy)		"ComEasy..."
+set geoEasyMsg(menuFileStat)	"Statistiques..."
+set geoEasyMsg(menuFileCParam)	"Calculation parameters ..."		;# TODO
+set geoEasyMsg(menuFileGamaParam) "Adjustment parameters ..."		;# TODO
+set geoEasyMsg(menuFileColor)	"Couleurs..."
+set geoEasyMsg(menuFileOParam)	"Autres paramètres..."
+set geoEasyMsg(menuFileSaveP)	"Enregistrer les paramètres"
+set geoEasyMsg(menuFileSaveSelection) "Enregistrer la sélection..."
+set geoEasyMsg(menuFileFontSetup) "Police..."
+set geoEasyMsg(menuFileFind)	"Rechercher"
+set geoEasyMsg(menuFileClear)	"Vider le contenu"
+set geoEasyMsg(menuFileExit)	"Quitter"
+set geoEasyMsg(menuEdit)		"Éditer"
+set geoEasyMsg(menuEditGeo)		"Observations"
+set geoEasyMsg(menuEditCoo)		"Coordonnées"
+set geoEasyMsg(menuEditPar)		"Observation parameters"		;# TODO
+set geoEasyMsg(menuEditMask)	"Load mask definitions"		;# TODO
+set geoEasyMsg(menuHelpAbout)	"About GeoEasy ..."		;# TODO
+set geoEasyMsg(menuPopupBD)		"Bearing/Distance"		;# TODO
+set geoEasyMsg(menuPopupAngle)	"Setting out"		;# TODO
+set geoEasyMsg(menuPopupOri)	"Orientation"		;# TODO
+set geoEasyMsg(menuPopupAppOri)	"Appr. orientation"		;# TODO
+set geoEasyMsg(menuCalDelOri)	"Delete orientations ..."		;# TODO
+set geoEasyMsg(menuPopupPol)	"Polar point"		;# TODO
+set geoEasyMsg(menuPopupSec)	"Intersection"		;# TODO
+set geoEasyMsg(menuPopupRes)	"Resection"		;# TODO
+set geoEasyMsg(menuPopupArc)	"Arcsection"		;# TODO
+set geoEasyMsg(menuPopupEle)	"Elevation"		;# TODO
+set geoEasyMsg(menuPopupDetail)	"Detail points"		;# TODO
+set geoEasyMsg(menuPopupAdj3D)	"3D adjustment"		;# TODO
+set geoEasyMsg(menuPopupAdj2D)	"Horizontal adjustment"		;# TODO
+set geoEasyMsg(menuPopupAdj1D)	"Elevation adjustment"		;# TODO
+set geoEasyMsg(menuGraph)		"Fenêtre"		;# TODO
+set geoEasyMsg(menuGraNew)		"New graphic window"		;# TODO
+set geoEasyMsg(menuLogNew)		"Log window"		;# TODO
+set geoEasyMsg(menuConsoleNew)	"Console window"		;# TODO
+set geoEasyMsg(menuWin)			"Window list"		;# TODO
+set geoEasyMsg(menuRefreshAll)	"Refresh all window"		;# TODO
+set geoEasyMsg(menuResize)		"Number of rows ..."		;# TODO
+set geoEasyMsg(menuMask)		"Mask ..."		;# TODO
+set geoEasyMsg(menuGraCom)		"Commands"		;# TODO
+set geoEasyMsg(menuGraRefresh)	"Rafraîchir"
+set geoEasyMsg(menuGraFind)		"Find point ..."		;# TODO
+set geoEasyMsg(menuGraPn)		"Point names"		;# TODO
+set geoEasyMsg(menuGraObs)		"Observations"		;# TODO
+set geoEasyMsg(menuGraDet)		"Detail points"		;# TODO
+set geoEasyMsg(menuGraLines)	"Lines"		;# TODO
+set geoEasyMsg(menuGraUsed)		"Observed points only"		;# TODO
+set geoEasyMsg(menuGraZoomAll)	"Zoom all"		;# TODO
+set geoEasyMsg(menuGraDXF)		"DXF output ..."		;# TODO
+set geoEasyMsg(menuGraClose)	"Fermer"
+set geoEasyMsg(menuGraCal)		"Calculer"
+set geoEasyMsg(menuCalTra)		"Traversing"		;# TODO
+set geoEasyMsg(menuCalTraNode)	"Travesing node"		;# TODO
+set geoEasyMsg(menuCalTrig)		"Trigonometrical line"		;# TODO
+set geoEasyMsg(menuCalTrigNode) "Trigonometrical node"		;# TODO
+set geoEasyMsg(menuCalPre)		"Preliminary coordinates"		;# TODO
+set geoEasyMsg(menuRecalcPre)	"Recalculate preliminary coordinates"		;# TODO
+set geoEasyMsg(menuCalDet)		"New detail points"		;# TODO
+set geoEasyMsg(menuCalDetAll)	"All detail point"		;# TODO
+set geoEasyMsg(menuCalOri)		"Orientations"		;# TODO
+set geoEasyMsg(menuCalAppOri)	"Preliminary orientations"		;# TODO
+set geoEasyMsg(menuCalAdj3D)	"3D network adjustment"		;# TODO
+set geoEasyMsg(menuCalAdj2D)	"Horizontal network adjustment"		;# TODO
+set geoEasyMsg(menuCalAdj1D)	"Leveling network adjustment"		;# TODO
+set geoEasyMsg(menuCalTran)		"Coordinate transformation"		;# TODO
+set geoEasyMsg(menuCalHTran)	"Elevation transformation"		;# TODO
+set geoEasyMsg(menuCalLine)		"Intersection of two lines"		;# TODO
+set geoEasyMsg(menuCalPntLine)	"Point on line"		;# TODO
+set geoEasyMsg(menuCalArea)		"Superficie"
+set geoEasyMsg(menuCalLength)	"Longueur"
+set geoEasyMsg(menuCalArc)		"Arc setting out"		;# TODO
+set geoEasyMsg(menuCalFront)	"Intersections 3D"
+set geoEasyMsg(menuCoord)		"Liste de coordonnées"
+set geoEasyMsg(menuObs)			"Carnet de terrain"
+set geoEasyMsg(menuCheckObs)	"Vérifier le carnet de terrain"
+set geoEasyMsg(menuCheckCoord)	"Vérfier la liste de coordonnées"
+set geoEasyMsg(menuSaveCsv)		"Enregistrer en CSV"
+set geoEasyMsg(menuSaveHtml)	"Enregistrer en HTML"
+set geoEasyMsg(menuSaveRtf)		"Enregistrer en RTF"
+set geoEasyMsg(menuCooTr)		"Transformation..."
+set geoEasyMsg(menuCooTrFile)	"Transformation, parameters from file"		;# TODO
+set geoEasyMsg(menuCooDif)		"Coordinate differences"		;# TODO
+set geoEasyMsg(menuCooDelAppr)	"Delete preliminary coordinates"		;# TODO
+set geoEasyMsg(menuCooDel)		"Supprimer toutes les coordonnées"
+set geoEasyMsg(menuPntDel)		"Supprimer tous les points"
+set geoEasyMsg(menuCooDelDetail) "Delte all detail coordinates"		;# TODO
+# regression
+set geoEasyMsg(menuReg)			"Regression calculation"		;# TODO
+set geoEasyMsg(menuRegLDist)	"Distance from line"		;# TODO
+set geoEasyMsg(menuRegPDist)	"Distance from plane"		;# TODO
+# dtm/tin
+set geoEasyMsg(menuDtm)			"MNT"
+set geoEasyMsg(menuDtmCreate)	"Créer..."
+set geoEasyMsg(menuDtmLoad)		"Charger..."
+set geoEasyMsg(menuDtmAdd)		"Ajouter..."
+set geoEasyMsg(menuDtmUnload)	"Fermer"
+set geoEasyMsg(menuDtmSave)		"Enregistrer"
+set geoEasyMsg(menuDtmInterp)	"Profil..."
+set geoEasyMsg(menuDtmContour)	"Contours ..."		;# TODO
+set geoEasyMsg(menuDtmVolume)	"Volume ..."		;# TODO
+set geoEasyMsg(menuDtmVolumeDif) "Volume difference ..."		;# TODO
+set geoEasyMsg(menuDtmVrml)		"VRML export ..."		;# TODO
+set geoEasyMsg(menuDtmKml)		"KML export ..."		;# TODO
+set geoEasyMsg(menuDtmGrid)		"ASCII grid export ..."		;# TODO
+set geoEasyMsg(menuLandXML)		"LandXML export ..."		;# TODO
+#
+#	Errors and warnings
+#
+set geoEasyMsg(-1)	"Error opening data file"		;# TODO
+set geoEasyMsg(-2)	"Geo data set is already loaded"		;# TODO
+set geoEasyMsg(-3)	"Error creating geo file"		;# TODO
+set geoEasyMsg(-4)	"Error creating coo file"		;# TODO
+set geoEasyMsg(-5)	"Error in data file"		;# TODO
+set geoEasyMsg(-6)	"Error opening geo file"		;# TODO
+set geoEasyMsg(-7)	"Error opening coo file"		;# TODO
+set geoEasyMsg(-8)	"No geo data set loaded"		;# TODO
+set geoEasyMsg(-9)	"Error in coordinate file at line:"		;# TODO
+set geoEasyMsg(-10) "Error in prject file at line:"		;# TODO
+set geoEasyMsg(-11) "Error creating parameter file"		;# TODO
+set geoEasyMsg(-12) "Station or target ID missing"		;# TODO
+set geoEasyMsg(1)	"No observations in loaded Geo data set"		;# TODO
+set geoEasyMsg(2)	"No coordinates in loaded Geo data set"		;# TODO
+set geoEasyMsg(skipped) "Unknown record skipped line/item: "		;# TODO
+set geoEasyMsg(overw) "File(s) exists, overwrite?"		;# TODO
+set geoEasyMsg(loaded)	"Coordinates from the already loaded file are used."		;# TODO
+set geoEasyMsg(helpfile)	"Help file not found"		;# TODO
+set geoEasyMsg(browser)		"Help cannot be displayed\nregister your html browser to open .html files"		;# TODO
+set geoEasyMsg(rtfview)		"RTF file cannot be displayed\nregister your word processor to open .rtf files"		;# TODO
+set geoEasyMsg(filetype)	"Unknown file or unsupported type"		;# TODO
+set geoEasyMsg(saveext)		"Please specify extension after the file name"		;# TODO
+set geoEasyMsg(noGeo)		"No data loaded"		;# TODO
+set geoEasyMsg(noStation)	"Missing station record at the beginning of field book"		;# TODO
+set geoEasyMsg(saveit)		"Do you want to save data?"		;# TODO
+set geoEasyMsg(saveso)		"Do you want to save set out data to geo data set?"		;# TODO
+set geoEasyMsg(image)		"Picture not fount: "		;# TODO
+set geoEasyMsg(geocode)		"Unknown geo code in mask definition: %s"		;# TODO
+set geoEasyMsg(nomask)		"No mask loaded at all"		;# TODO
+set geoEasyMsg(wrongmask)	"Error in mask definition: %s"		;# TODO
+set geoEasyMsg(openit)		"Do you want to open the result?"		;# TODO
+set geoEasyMsg(wrongval)	"Invalid value"		;# TODO
+set geoEasyMsg(mustfill)	"You must fill this field, use delete to delete the whole line"		;# TODO
+set geoEasyMsg(stndel)		"Are you sure to delete the whole station?"		;# TODO
+set geoEasyMsg(recdel)		"Are you sure to delete record?"		;# TODO
+set geoEasyMsg(noOri)		"No reference directions or coords for this point"		;# TODO
+set geoEasyMsg(noOri1)		"No orientation for point"		;# TODO
+set geoEasyMsg(noOri2)		"Orientation cannot be calculated for this station"		;# TODO
+set geoEasyMsg(cantOri)		"Orientation cannot be calculated for any station"		;# TODO
+set geoEasyMsg(readyOri)	"All station has orientation. Do you want to recalculate all orientation?"		;# TODO
+set geoEasyMsg(samePnt)		"Station and reference point has the same coordinates!"		;# TODO
+set geoEasyMsg(noStn)		"This is not a station"		;# TODO
+set geoEasyMsg(noSec)		"Not enough external directions for intersection"		;# TODO
+set geoEasyMsg(noRes)		"Not enough internal directions for resection"		;# TODO
+set geoEasyMsg(noArc)		"Not enough distances for arcsection"		;# TODO
+set geoEasyMsg(noPol)		"Not enough observations for polar"		;# TODO
+set geoEasyMsg(noAdj)		"Not enough observations for adjustment or no orientation for stations"		;# TODO
+set geoEasyMsg(noUnknowns)	"There are no unknowns for adjustment"		;# TODO
+set geoEasyMsg(pure)		"Too large %s-%s %s %s\n iteration may neccessary"		;# TODO
+set geoEasyMsg(noCoo)		"I cannot calculate coordinates"		;# TODO
+set geoEasyMsg(noObs)		"Not enough observations for adjustment"		;# TODO
+set geoEasyMsg(noAppCoo)	"No coordinates for point"		;# TODO
+set geoEasyMsg(noAppZ)		"No elevation for"		;# TODO
+set geoEasyMsg(cantSave)	"Can't save file"		;# TODO
+set geoEasyMsg(fewCoord)	"Not enough coordinates for the calculation"		;# TODO
+set geoEasyMsg(pointsDropped)	"No coordinates for points:"		;# TODO
+set geoEasyMsg(delappr)		"Do you want to delete preliminary coordinates?"		;# TODO
+set geoEasyMsg(delcoo)		"Do you want to delete all coordinates?"		;# TODO
+set geoEasyMsg(delpnt)		"Do you want to delete all points?"		;# TODO
+set geoEasyMsg(deldetailpnt)		"Do you want to delete co-ordinates of all detail points?"		;# TODO
+set geoEasyMsg(delori)		"Do you want to delete all orientations?"		;# TODO
+set geoEasyMsg(nodetail)	"Pas de points de détail à calculer"
+
+set geoEasyMsg(double)		"Double coordinates"		;# TODO
+set geoEasyMsg(noEle)		"Not enough observations for elevation calculation"		;# TODO
+set geoEasyMsg(wrongsel)	"Illegal selection"		;# TODO
+set geoEasyMsg(wrongsel1)	"Select exactly %d items"		;# TODO
+set geoEasyMsg(wrongsel2)	"Select at least %d items"		;# TODO
+set geoEasyMsg(nst)			"Number of occupations:"		;# TODO
+set geoEasyMsg(ndist)		"Number of distances:"		;# TODO
+set geoEasyMsg(next)		"Number of external directions:"		;# TODO
+set geoEasyMsg(usedPn)		"Point name already used in a loaded data set"		;# TODO
+set geoEasyMsg(dblPn)		"Repeated point number/coordinate"		;# TODO
+set geoEasyMsg(nonNumPn)	"Skipped non numeric point numbers:"		;# TODO
+set geoEasyMsg(units)		"Meter and DMS units can be used only"		;# TODO
+set geoEasyMsg(nomore)		"No more found"		;# TODO
+set geoEasyMsg(tajErr)		"Direction error over limit"		;# TODO
+set geoEasyMsg(finalize)	"Finalize preliminary coordinates?"		;# TODO
+set geoEasyMsg(logDelete)	"Do you want to delete the log file?"		;# TODO
+set geoEasyMsg(cancelled)	"Operation cancelled."		;# TODO
+set geoEasyMsg(dist)		"Distance calculation"		;# TODO
+set geoEasyMsg(area)		"Area calculation"		;# TODO
+set geoEasyMsg(sum)			"Somme"
+set geoEasyMsg(sum1)		"Superficie"
+set geoEasyMsg(sum2)		"Périmètre"
+set geoEasyMsg(endp)		"Endpoint?"		;# TODO
+set geoEasyMsg(maxGr)		"10 graphic windows can be opened only"		;# TODO
+set geoEasyMsg(orist)		"Not enough known (N,E,Z) oriented stations"		;# TODO
+
+set geoEasyMsg(linreg)		"Regression line cannot be calculated"		;# TODO
+set geoEasyMsg(planreg)		"Regression plane cannot be calculated"		;# TODO
+
+set geoEasyMsg(check)		"Fieldbook checking"		;# TODO
+set geoEasyMsg(missing)		"Missing obligatory value %s at line %s"		;# TODO
+set geoEasyMsg(together)	"Missing value %s at line %s"		;# TODO
+set geoEasyMsg(notTogether)	"Values cannot be used together %s at line %s"		;# TODO
+set geoEasyMsg(stationpn)	"Station and target are the same point %s at line %s"		;# TODO
+set geoEasyMsg(missingstation) "Missing station before line %s"		;# TODO
+set geoEasyMsg(doublepn)	"Repeated point for a station %s at line %s"		;# TODO
+set geoEasyMsg(numError)	"Error %d"		;# TODO
+set geoEasyMsg(csvwarning)	"To save coordinates for import to other software use 'Save as' from the main window. Do you want to continue?"		;# TODO
+
+set geoEasyMsg(tinfailed)	"Failed to create DTM"		;# TODO
+set geoEasyMsg(tinload)		"Failed to load DTM"		;# TODO
+set geoEasyMsg(fewmassp)	"Few points to create DTM"		;# TODO
+set geoEasyMsg(delbreakline) "Delete break line?"		;# TODO
+set geoEasyMsg(delhole)		"Delete marker?"		;# TODO
+set geoEasyMsg(deldtmpnt)	"Delete DTM point?"		;# TODO
+set geoEasyMsg(deldtmtri)	"Delete DTM triangle?"		;# TODO
+set geoEasyMsg(errsavedtm)	"Error saving DTM"		;# TODO
+
+set geoEasyMsg(stat)		"Statistics on %d loaded data sets\nNumber of points: %d\nNumber of known points: %d\nNumber of detailed points: %d\nNumber of stations: %d\nNumber of known stations: %d\nNumber of occupations: %d\nNumber of oriented occupations: %d\n"		;# TODO
+# gama
+set geoEasyMsg(gamapar)		"Adjustment parameters"		;# TODO
+set geoEasyMsg(gamaconf)	"Confidence level (0-1)"		;# TODO
+set geoEasyMsg(gamaangles)	"Angle units"		;# TODO
+set geoEasyMsg(gamatol)		"Tolerance \[mm\]"		;# TODO
+set geoEasyMsg(gamadirlimit) "Distance limit \[m\]"		;# TODO
+set geoEasyMsg(gamashortout) "Short output list"		;# TODO
+set geoEasyMsg(gamasvgout)	"SVG error ellipses"		;# TODO
+set geoEasyMsg(gamaxmlout)	"Preserve GaMa XML output"		;# TODO
+set geoEasyMsg(gamanull)	"No text file result"		;# TODO
+set geoEasyMsg(gamanull1)	"No xml file result"		;# TODO
+set geoEasyMsg(gamaori)		"Trouble storing orientation angle"		;# TODO
+set geoEasyMsg(gamastdhead0) "Standard deviation of unit weight"		;# TODO
+set geoEasyMsg(gamastdhead1) "  m0  apriori    :"		;# TODO
+set geoEasyMsg(gamastdhead2) "  m0' aposteriori:"		;# TODO
+set geoEasyMsg(gamastdhead3) "% interval"		;# TODO
+set geoEasyMsg(gamastdhead4) "contains the m0'/m0 value"		;# TODO
+set geoEasyMsg(gamastdhead5) "doesn't contain the m0'/m0 value"		;# TODO
+set geoEasyMsg(gamacoohead0) "Adjusted coordinates"		;# TODO
+set geoEasyMsg(gamacoohead1) "Point id        E          N          Z"		;# TODO
+set geoEasyMsg(gamaobshead0) "Observations"		;# TODO
+set geoEasyMsg(gamaobshead1) "Station    Observed    Adj.obs.  Residual    Stdev"		;# TODO
+set geoEasyMsg(gamaorihead0) "Orientations"		;# TODO
+set geoEasyMsg(gamaorihead1) "Station  Preliminary  Adjusted"		;# TODO
+#
+# tooltips
+#
+set geoEasyMsg(toolZoomin)	"Zoom in by window or point"		;# TODO
+set geoEasyMsg(toolZoomout)	"Zoom out"		;# TODO
+set geoEasyMsg(toolPan)		"Pan"		;# TODO
+set geoEasyMsg(toolRuler)	"Distance"		;# TODO
+set geoEasyMsg(toolArea)	"Area"		;# TODO
+set geoEasyMsg(toolSp)		"Traversing"		;# TODO
+set geoEasyMsg(toolReg)		"Regression"		;# TODO
+set geoEasyMsg(toolZdtm)	"Height interpolation"		;# TODO
+set geoEasyMsg(toolBreak)	"Break line"		;# TODO
+set geoEasyMsg(toolHole)	"Hole in DTM"		;# TODO
+set geoEasyMsg(toolXchgtri)	"Exchange triangles"		;# TODO
+#
+# dxf output
+#
+set geoEasyMsg(dxfpar)		"DXF export parameters"		;# TODO
+set geoEasyMsg(dxfinpar)	"DXF import parameters"		;# TODO
+set geoEasyMsg(layer1)		"Name of point layer"		;# TODO
+set geoEasyMsg(block)		"Use blocks"		;# TODO
+set geoEasyMsg(layerb)		"Name of block"		;# TODO
+set geoEasyMsg(attrib)		"Point number attribute"		;# TODO
+set geoEasyMsg(attrcode)	"Point code attribute"		;# TODO
+set geoEasyMsg(attrelev)	"Point elevation attribute"		;# TODO
+set geoEasyMsg(pcode)		"Point code to layer"		;# TODO
+set geoEasyMsg(xzplane)		"Draw in yz plane"		;# TODO
+set geoEasyMsg(useblock)	"Blocks"		;# TODO
+set geoEasyMsg(pcode1)		"Read point code from layer name"		;# TODO
+set geoEasyMsg(dxfpnt)		"Use points"		;# TODO
+set geoEasyMsg(3d)			"3D"		;# TODO
+set geoEasyMsg(addlines)	"Linework"		;# TODO
+set geoEasyMsg(pd)			"Detail points only"		;# TODO
+set geoEasyMsg(ptext)		"Point numbers from text"		;# TODO
+set geoEasyMsg(layer2)		"Layer name"		;# TODO
+set geoEasyMsg(layer3)		"Layer name"		;# TODO
+set geoEasyMsg(ssize)		"Symbol size"		;# TODO
+set geoEasyMsg(pnon)		"Point name labels"		;# TODO
+set geoEasyMsg(dxpn)		"X shift"		;# TODO
+set geoEasyMsg(dypn)		"Y shift"		;# TODO
+set geoEasyMsg(pzon)		"Elevation labels"		;# TODO
+set geoEasyMsg(dxz)			"X shift"		;# TODO
+set geoEasyMsg(dyz)			"Y shift"		;# TODO
+set geoEasyMsg(zdec)		"Decimals"		;# TODO
+set geoEasyMsg(spn)			"Text size"		;# TODO
+set geoEasyMsg(sz)			"Text size"		;# TODO
+set geoEasyMsg(layerlist)	"Layer list ..."		;# TODO
+set geoEasyMsg(blocklist)	"Block list ..."		;# TODO
+set geoEasyMsg(attrlist)	"Attr. list ..."		;# TODO
+#
+#	txt columns
+#
+set geoEasyMsg(txtcols)		"Columns in file"		;# TODO
+#
+# parameters
+#
+set geoEasyMsg(parTitle)	"Calculation parameters"		;# TODO
+set geoEasyMsg(projred)		"Reduction for projection \[mm/km\]:"		;# TODO
+set geoEasyMsg(avgh)		"Average height above MSL \[m\]:"		;# TODO
+set geoEasyMsg(stdangle)	"Standard deviation for directions \[\"\]:"		;# TODO
+set geoEasyMsg(stddist1)	"Standard deviation for distances \[mm\]:"		;# TODO
+set geoEasyMsg(stddist2)	"Standard deviation for distances \[mm/km\]:"		;# TODO
+set geoEasyMsg(stdlevel)	"Standard deviation for leveling \[mm/km\]:"		;# TODO
+set geoEasyMsg(refr)		"Calculate refraction and Earth curve"		;# TODO
+set geoEasyMsg(dec)			"Decimals in results:"		;# TODO
+#
+# color dialog
+#
+set geoEasyMsg(colTitle)	"Colour settings"		;# TODO
+set geoEasyMsg(mask)		"Mask window"		;# TODO
+set geoEasyMsg(mask1Color)	"1st colour in mask window:"		;# TODO
+set geoEasyMsg(mask2Color)	"2nd colour in mask window:"		;# TODO
+set geoEasyMsg(mask3Color)	"3nd colour in mask window:"		;# TODO
+set geoEasyMsg(mask4Color)	"4th colour in mask window:"		;# TODO
+set geoEasyMsg(mask5Color)	"5th colour in mask window:"		;# TODO
+set geoEasyMsg(obsColor)	"Observation colour"		;# TODO
+set geoEasyMsg(lineColor)	"Line colour:"		;# TODO
+set geoEasyMsg(finalColor)	"Final coordinates:"		;# TODO
+set geoEasyMsg(apprColor)	"Preliminary coordinates:"		;# TODO
+set geoEasyMsg(nostationColor) "Point colour:"		;# TODO
+set geoEasyMsg(stationColor) "Station colour:"		;# TODO
+set geoEasyMsg(orientColor)	"Oriented station colour:"		;# TODO
+#
+# other parameters
+#
+set geoEasyMsg(oparTitle)	"Autres paramètres"		;# TODO
+set geoEasyMsg(lcoosep)		"Séparateur dans les listes exportées :"
+set geoEasyMsg(ltxtsep)		"Séparateur dans les listes importées :"
+set geoEasyMsg(lmultisep)	"Skip repetead separators"		;# TODO
+set geoEasyMsg(lautor)		"Rafraîchissement automatique"
+set geoEasyMsg(llang)		"Langue :"
+set geoEasyMsg(loridetail)	"Use detail points in orientation and adjustment"		;# TODO
+set geoEasyMsg(lbrowser)	"Browser:"		;# TODO
+set geoEasyMsg(lrtfview)	"RTF viewer:"		;# TODO
+set geoEasyMsg(defaultgeomask) "Default fieldbook mask:"		;# TODO
+set geoEasyMsg(defaultcoomask) "Default coordinate mask:"		;# TODO
+set geoEasyMsg(maskrows)	"Number of rows in masks:"		;# TODO
+set geoEasyMsg(langChange)	"Save parameters and restart the program to change the language"		;# TODO
+set geoEasyMsg(lheader)		"Number of header lines:"		;# TODO
+set geoEasyMsg(lfilter)		"Filter expression (regexp):"		;# TODO
+#
+# tip parameters
+#
+set geoEasyMsg(tinpar)		"Create DTM"		;# TODO
+set geoEasyMsg(gepoints)	"From points in coordinate lists"		;# TODO
+set geoEasyMsg(dxffile) 	"From a DXF file"		;# TODO
+set geoEasyMsg(dxfpoint)	"Layer for mass points:"		;# TODO
+set geoEasyMsg(dxfbreak)	"Layer for break line:"		;# TODO
+set geoEasyMsg(dxfhole)		"Layer for hole markers:"		;# TODO
+set geoEasyMsg(asciifile)	"From a text file"		;# TODO
+set geoEasyMsg(convex)		"Convex boundary"		;# TODO
+#
+# contour parameters
+#
+set geoEasyMsg(contourpar)	"Contour lines"		;# TODO
+set geoEasyMsg(contourInterval) "Contour interval:"		;# TODO
+set geoEasyMsg(contourLayer)	"Layer name from elevation"		;# TODO
+set geoEasyMsg(contour3Dface)	"3DFaces to DXF"		;# TODO
+set geoEasyMsg(contourIntErr) "Invalid contour interval or DTM"		;# TODO
+#
+# volume calculation
+#
+set geoEasyMsg(volumepar)	"Volume calculation"		;# TODO
+set geoEasyMsg(volumeLevel)	"Reference height:"		;# TODO
+set geoEasyMsg(volumeErr)	"Invalid reference height or DTM"		;# TODO
+
+# orthogonal transformation
+set geoEasyMsg(trpar)		"Transformation parameters"		;# TODO
+set geoEasyMsg(trdy)		"Shift E:"		;# TODO
+set geoEasyMsg(trdx)		"Shift N:"		;# TODO
+set geoEasyMsg(trrot)		"Rotation (DMS):"		;# TODO
+set geoEasyMsg(trscale)		"Scale factor E and N:"		;# TODO
+set geoEasyMsg(trdz)		"Shift Z:"		;# TODO
+set geoEasyMsg(trscalez)	"Scale factor for Z:"		;# TODO
+set geoEasyMsg(allparnum)	"The number of parameters in the file is more than 21"		;# TODO
+
+# point filter dialog
+set geoEasyMsg(filterpar)	"Point filter"		;# TODO
+set geoEasyMsg(allpoints)	"All points"		;# TODO
+set geoEasyMsg(pointno)		"Point number"		;# TODO
+set geoEasyMsg(pointrect)	"Rectangle"		;# TODO
+set geoEasyMsg(pointcode)	"Point code"		;# TODO
+# proj params
+set geoEasyMsg(projpar)		"Projection parameters"		;# TODO
+set geoEasyMsg(fromEpsg)	"Source EPSG code:"		;# TODO
+set geoEasyMsg(preservz)	"Keep source elevations"		;# TODO
+set geoEasyMsg(zfaclabel)	"Z factor:"		;# TODO
+set geoEasyMsg(zoffslabel)	"Z offset:"		;# TODO
+
+# observation parameters
+set geoEasyMsg(parmask)		"Parameters"		;# TODO
+
+set geoEasyMsg(horizDia)	"New points, new orientations:"		;# TODO
+set geoEasyMsg(oriDia)		"New orientations:"		;# TODO
+set geoEasyMsg(elevDia)		"New points:"		;# TODO
+set geoEasyMsg(adjDia)		"Observations, unknonws: "		;# TODO
+set geoEasyMsg(adjModule)	"Network adjustment module needs gama-local, please install it"		;# TODO
+set geoEasyMsg(dtmModule)	"DTM module needs triangle, please install it"		;# TODO
+set geoEasyMsg(crsModule)	"Reprojection needs cs2cs (from Proj), please install it"		;# TODO
+set geoEasyMsg(travLine)	"line"		;# TODO
+set geoEasyMsg(trigLineToo)	"Trigonometric line too?"		;# TODO
+set geoEasyMsg(noTra)		"Few points for traverse"		;# TODO
+set geoEasyMsg(noTraCoo)	"No coordinates for 1st point"		;# TODO
+set geoEasyMsg(startTra)	"First point"		;# TODO
+set geoEasyMsg(nextTra)		"Next point"		;# TODO
+set geoEasyMsg(numTra)		"Point number for node:"		;# TODO
+set geoEasyMsg(nodeTra)		"Node"		;# TODO
+set geoEasyMsg(freeTra)		"No coordinaters for end point\nfree taverse"		;# TODO
+set geoEasyMsg(firstTra)	"No orientation on 1st point\nbeillesztett traverse"		;# TODO
+set geoEasyMsg(lastTra)		"No orientation on last point\negyszeresen taj."		;# TODO
+set geoEasyMsg(firstTra)	"No orientation on first beillesztett"		;# TODO
+set geoEasyMsg(lastTra)		"No orientation on last egyik vegen"		;# TODO
+set geoEasyMsg(distTra)		"Missing distance in traverse"		;# TODO
+set geoEasyMsg(angTra)		"Missing angle in traverse"		;# TODO
+set geoEasyMsg(error1Tra)	"Error limits                 Angle (sec)        Distance (cm)"		;# TODO
+set geoEasyMsg(error2Tra)	"Main, precise traversing "		;# TODO
+set geoEasyMsg(error3Tra)	"Precise traversing       "		;# TODO
+set geoEasyMsg(error4Tra)	"Main traversing          "		;# TODO
+set geoEasyMsg(error5Tra)	"Traversing               "		;# TODO
+set geoEasyMsg(error6Tra)	"Rural main traversing    "		;# TODO
+set geoEasyMsg(error7Tra)	"Rural traversing         "		;# TODO
+set geoEasyMsg(travChk)		"Traversing"		;# TODO
+set geoEasyMsg(trigChk)		"Trigonometric line"		;# TODO
+set geoEasyMsg(miszTri)		"Missing heighti at the start point in trigonometric line"		;# TODO
+set geoEasyMsg(freeTri)		"Free trigonometric line"		;# TODO
+set geoEasyMsg(dzTri)		"Cannnot calculate height diff. in trigonometric line"		;# TODO
+set geoEasyMsg(errorTri)	"Error limit: "		;# TODO
+set geoEasyMsg(limTrig)		"Error is over limit\nDo you want to store heights?"		;# TODO
+#
+# coordinate transformation
+#
+set geoEasyMsg(fromCS)		"Data set to transform"		;# TODO
+set geoEasyMsg(toCS)		"Target data set"		;# TODO
+set geoEasyMsg(fewPoints)	" Few points for transformation"		;# TODO
+set geoEasyMsg(pnttitle)	"Reference points"		;# TODO
+set geoEasyMsg(typetitle)	"Type of transformation"		;# TODO
+set geoEasyMsg(typeHelmert4) "4 parameters orthogonal transformation"		;# TODO
+set geoEasyMsg(typeHelmert3) "3 parameters orthogonal transformation"		;# TODO
+set geoEasyMsg(typeAffin)	"Affine transformation"		;# TODO
+set geoEasyMsg(typePoly2)	"2nd order polynom transformation"		;# TODO
+set geoEasyMsg(typePoly3)	"3rd order polynom transformation"		;# TODO
+set geoEasyMsg(trSave)		"Save transformed coordinates to file"		;# TODO
+set geoEasyMsg(parSave)		"Save transformation parameters to file"		;# TODO
+set geoEasyMsg(formulaH4y)	"  E = %s + e * %.9f - n * %.9f"		;# TODO
+set geoEasyMsg(formulaH4x)	"  N = %s + e * %.9f + n * %.9f"		;# TODO
+set geoEasyMsg(formulaH3y)	"  E = %s + e * %.9f - n * %.9f"		;# TODO
+set geoEasyMsg(formulaH3x)	"  N = %s + e * %.9f + n * %.9f"		;# TODO
+set geoEasyMsg(formulaAfy)	"  E = %s + e * %.9f + n * %.9f"		;# TODO
+set geoEasyMsg(formulaAfx)	"  N = %s + e * %.9f + n * %.9f"		;# TODO
+set geoEasyMsg(formulaPrmy) "  E = %s + e * %.9f + n * %.9f"		;# TODO
+set geoEasyMsg(formulaPrmx) "  N = %s + e * %.9f + n * %.9f"		;# TODO
+
+set geoEasyMsg(formulaP2)	"  y' = y - %s    x' = x - %s"		;# TODO
+set geoEasyMsg(formulaP2y)	"  Y = %s + y' * %.8e + y'^2 * %.8e + x' * %.8e + x'y' * %.8e + x'^2 * %.8e"		;# TODO
+set geoEasyMsg(formulaP2x)	"  X = %s + y' * %.8e + y'^2 * %.8e + x' * %.8e + x'y' * %.8e + x'^2 * %.8e"		;# TODO
+set geoEasyMsg(formulaP3y)	"  Y = %s + y' * %.8e + y'^2 * %.8e + y'^3 * %.8e + x' * %.8e + y'x' * %.8e + y'^2x' * %.8e + x'^2 * %.8e + y'x'^2 * %.8e + x'^3 * %.8e"		;# TODO
+set geoEasyMsg(formulaP3x)	"  X = %s + y' * %.8e + y'^2 * %.8e + y'^3 * %.8e + x' * %.8e + y'x' * %.8e + y'^2x' * %.8e + x'^2 * %.8e + y'x'^2 * %.8e + x'^3 * %.8e"		;# TODO
+set geoEasyMsg(formula1D)	"  Z = z + %s"		;# TODO
+set geoEasyMsg(scaleRot)	"  Scale = %.8f Rotation = %s"		;# TODO
+#
+# find/replace dialog
+#
+set geoEasyMsg(findpar)		"Find/replace"		;# TODO
+set geoEasyMsg(findWhat)	"Find:"		;# TODO
+set geoEasyMsg(replaceWith) "Replace:"		;# TODO
+set geoEasyMsg(findMode)	"Regular expression"		;# TODO
+#
+# about window messages
+#
+set y [clock format [clock seconds] -format %Y]
+set geoEasyMsg(digikom)		"Sponsored by DigiKom Ltd."		;# TODO
+set geoEasyMsg(about1)		"Surveying calculations"		;# TODO
+set geoEasyMsg(about2)		"for Land Surveyors"		;# TODO
+set geoEasyMsg(modules)		"Modules:"		;# TODO
+#
+# text window headers
+#
+set geoEasyMsg(logWin)		"Résultats des calculs"
+set geoEasyMsg(consoleWin)	"Console Tcl"
+set geoEasyMsg(startup)		"Script de démarrage Tcl exécuté : "
+#
+# resize mask
+#
+set geoEasyMsg(rowCount)	"Number of rows:"		;# TODO
+set geoEasyMsg(resize)		"Window size"		;# TODO
+#
+# log messages
+#
+set geoEasyMsg(start)		"GeoEasy started"		;# TODO
+set geoEasyMsg(stop)		"GeoEasy stopped"		;# TODO
+set geoEasyMsg(load)		"data set loaded"		;# TODO
+set geoEasyMsg(save)		"data set saved"		;# TODO
+set geoEasyMsg(saveas)		"data set saved as:"		;# TODO
+set geoEasyMsg(unload)		"data set closed"		;# TODO
+set geoEasyMsg(psave)		"project saved"		;# TODO
+set geoEasyMsg(pload)		"project loaded"		;# TODO
+#
+set geoEasyMsg(faces)		"Two faces "		;# TODO
+set geoEasyMsg(face2)		"Station   Collimation     Index Distance T.height"		;# TODO
+set geoEasyMsg(face3)		"Target        error       error   diff.    diff."		;# TODO
+set geoEasyMsg(noface2)		"Double observed point or too big difference between the two faces %s"		;# TODO
+set geoEasyMsg(msgsave)		"Parameters saved to geo_easy.msk\nprevious parameters are backed up into geo_easy.msk.bak."		;# TODO
+#
+#	headers for fixed forms (traversing & adjustment)
+#
+set geoEasyMsg(tra1)		"Open, no orientation"		;# TODO
+set geoEasyMsg(tra2)		"Open, one orientation"		;# TODO
+set geoEasyMsg(tra3)		"Open, two orientation"		;# TODO
+set geoEasyMsg(tra4)		"Free end"		;# TODO
+set geoEasyMsg(head1Tra)	"            bearing    bw dist"		;# TODO
+set geoEasyMsg(head2Tra)	"Point        angle     distance  (dE)     (dN)       dE         dN"		;# TODO
+set geoEasyMsg(head3Tra)	"           correction  fw dist    corrections      Easting    Northing"		;# TODO
+
+set geoEasyMsg(head1Adj)	"Station    Point      Observation  Residual   Adjusted obs."		;# TODO
+set geoEasyMsg(m0Adj)		"Standard deviation of unit weight: %8.4f Number of extra observations %d"		;# TODO
+set geoEasyMsg(head2Adj)	"Point      Code        Easting    dE    std dev  Northing  dN    std dev"		;# TODO
+set geoEasyMsg(head1Trig)	"                       Height differences"		;# TODO
+set geoEasyMsg(head2Trig)	"Point    Distance  Forward Backward    Mean  Correction Elevation"		;# TODO
+set geoEasyMsg(head1Sec)	"Point num  Code              E            N       Bearing"		;# TODO
+set geoEasyMsg(head1Res)	"Point num  Code              E            N        Direction  Angle"		;# TODO
+set geoEasyMsg(head1Arc)	"Point num  Code              E            N        Distance"		;# TODO
+set geoEasyMsg(head1Pol)	"Point num  Code              E            N      Distance    Bearing"		;# TODO
+set geoEasyMsg(head1Pnt)	"Point num  Code              E            N      Distance    Total dist"		;# TODO
+set geoEasyMsg(head1Ele)	"Point num  Code            Height      Distance"		;# TODO
+set geoEasyMsg(head1Det)	"                                                                         Oriented   Horizontal"		;# TODO
+set geoEasyMsg(head2Det)	"Point num  Code              E            N              H   Station     direction  distance"		;# TODO
+set geoEasyMsg(head1Ori)	"Point num  Code         Direction    Bearing   Orient ang   Distance   e\" e\"max   E(m)"		;# TODO
+set geoEasyMsg(head1Dis)	"Point num  Point num  Bearing   Distance Slope dis Zenith angle"		;# TODO
+set geoEasyMsg(head1Angle)	"Point num  Bearing   Distance Angle     Angle from 1st  Local E     Local N"		;# TODO
+# transformation
+set geoEasyMsg(head1Tran)	"Point num          e            n            E            N          dE           dN           dist"		;# TODO
+set geoEasyMsg(head2Tran)	"Point num          e            n            E            N"		;# TODO
+set geoEasyMsg(head1HTran)	"Point num          z            Z           dZ"		;# TODO
+set geoEasyMsg(head2HTran)	"Point num          z            Z"		;# TODO
+set geoEasyMsg(headTraNode)	"Point num    Length         E            N"		;# TODO
+set geoEasyMsg(headTrigNode)	"Point num    Length         Z"		;# TODO
+set geoEasyMsg(headDist)	"Point num          E            N         Length"		;# TODO
+set geoEasyMsg(head1Front)	"Point num  Code                E            N            dE          dN           Z            dZ"		;# TODO
+#
+# regression
+#
+set geoEasyMsg(unknown)			"inconnu"
+set geoEasyMsg(fixedRadius)		"Fixed radius"		;# TODO
+set geoEasyMsg(cantSolve)		"Cannot solve the task"		;# TODO
+set geoEasyMsg(head0LinRegX)	"N = %+.8f * E %s"		;# TODO
+set geoEasyMsg(head0LinRegY)	"E = %+.8f * N %s"		;# TODO
+set geoEasyMsg(hAngleReg)		"Angle from east:"		;# TODO
+set geoEasyMsg(vAngleReg)		"Angle from north:"		;# TODO
+set geoEasyMsg(correlation)		"Correlation coefficient:"		;# TODO
+set geoEasyMsg(head1LinRegX)	"Point num          E            N            dN"		;# TODO
+set geoEasyMsg(head1LinRegY)	"Point num          E            N            dE"		;# TODO
+set geoEasyMsg(head2LinReg)		"Point num          E            N            dE          dN          dist"		;# TODO
+set geoEasyMsg(head0PlaneReg)	"z = %s %+.8f * E %+.8f * N"		;# TODO
+set geoEasyMsg(head00PlaneReg)	"Slope direction: %s  Slope angle: %s"		;# TODO
+set geoEasyMsg(head1PlaneReg)	"Point num          E            N            Z           dZ"		;# TODO
+set geoEasyMsg(head0CircleReg)	"E0 = %s N0 = %s R = %s"		;# TODO
+set geoEasyMsg(head1CircleReg)	"Point num          E            N            dE           dN           dR"		;# TODO
+set geoEasyMsg(head2CircleReg)	"After %d iteration greater than %.4f m change in unknowns"		;# TODO
+set geoEasyMsg(head0HPlaneReg)	"z = %s"		;# TODO
+set geoEasyMsg(head0LDistReg)	"Distance from the %s - %s line"		;# TODO
+set geoEasyMsg(head1LDistReg)	"Point num          E            N        Distance         dE           dN"		;# TODO
+set geoEasyMsg(head0PDistReg)	"Distance from the %s - %s - %s plane"		;# TODO
+set geoEasyMsg(head1PDistReg)	"Point num          E            N            Z        Distance         dE            dN            dZ"		;# TODO
+set geoEasyMsg(head0SphereReg)	"E0 = %s N0 = %s Z0 = %s R = %s"		;# TODO
+set geoEasyMsg(head1SphereReg)	"Point num          E            N            Z            dE           dN            dZ           dR"		;# TODO
+set geoEasyMsg(head0Line3DReg)	"E = %s %+.8f * t\nN = %s %+.8f * t\nZ = %s %+.8f * t"		;# TODO
+set geoEasyMsg(head1Line3DReg)	"Point num          E            N            Z            dE           dN           dZ           dt"		;# TODO
+#
+# dtm
+#
+set geoEasyMsg(creaDtm)		"Failed to create DTM"		;# TODO
+set geoEasyMsg(loadDtm)		"Failed to load DTM"		;# TODO
+set geoEasyMsg(regenDtm)	"Regenerate DTM? To create a new DTM close the loaded DTM."		;# TODO
+set geoEasyMsg(closDtm)		"Previous DTM will be closed"		;# TODO
+set geoEasyMsg(saveDtm)		"Do you want to save previous DTM?"		;# TODO
+set geoEasyMsg(ZDtm)		"Height: %.2f m"		;# TODO
+set geoEasyMsg(noZDtm)		"No height for the point"		;# TODO
+set geoEasyMsg(gridtitle)	"ASCII GRID"		;# TODO
+set geoEasyMsg(griddx)		"Grid step:"		;# TODO
+set geoEasyMsg(griddx1)		"Grid step: %.2f"		;# TODO
+set geoEasyMsg(llc)			"Lower left  corner: %.2f %.2f"		;# TODO
+set geoEasyMsg(urc)			"Upper right corner: %.2f %.2f"		;# TODO
+set geoEasyMsg(gridvrml)	"VRML export"		;# TODO
+set geoEasyMsg(cs2cs)		"Reprojection failed"		;# TODO
+set geoEasyMsg(headVolume)	"Base height  Volume        Above        Below       Area     Surface area"		;# TODO
+set geoEasyMsg(dtmStat)		"%s DTM\n%d points\n%d triangles\n%d break lines/border lines\n%d holes\nE min: %.2f\nN min: %.2f\nH min: %.2f\nE max: %.2f\nN max: %.2f\nH max: %.2f"		;# TODO
+set geoEasyMsg(voldif)		"Cut  Volume: %.1f m3 Area: %.1f m2\nFill Volume: %.1f m3  Area: %.1f m2\nSame: %.1f m2"		;# TODO
+set geoEasyMsg(interpolateTin) "Interpolation:"		;# TODO
+set geoEasyMsg(interptitle) "Profile"		;# TODO
+set geoEasyMsg(lx) "E start: "		;# TODO
+set geoEasyMsg(ly) "N start: "		;# TODO
+#set geoEasyMsg(lz) "Z: "
+set geoEasyMsg(lx1) "E end: "		;# TODO
+set geoEasyMsg(ly1) "N end: "		;# TODO
+set geoEasyMsg(ldxf) "DXF file"		;# TODO
+set geoEasyMsg(lcoo) "Coordinate file"		;# TODO
+set geoEasyMsg(lstep) "Step: "		;# TODO
+# arc setting out
+set geoEasyMsg(cornerTitle) "Arc corner"		;# TODO
+set geoEasyMsg(spTitle) "First line"		;# TODO
+set geoEasyMsg(epTitle) "Second line"		;# TODO
+set geoEasyMsg(arcPar) "Arc parameters"		;# TODO
+set geoEasyMsg(arcRadius) "Radius"		;# TODO
+set geoEasyMsg(arcParam) "Transition parameter"		;# TODO
+set geoEasyMsg(arcTran) "Transition curve\n  parameter: %.1f\n  dR: %.2f\n  length: %.2f\n  X0: %.2f"		;# TODO
+set geoEasyMsg(arcStep) "Distance between detail points \[m\]"		;# TODO
+set geoEasyMsg(arcNum) "or number of points"		;# TODO
+set geoEasyMsg(arcSave) "Save coordinates"		;# TODO
+set geoEasyMsg(arcPrefix) "Point id prefix"		;# TODO
+set geoEasyMsg(arcT) "Tangent length"		;# TODO
+set geoEasyMsg(arcP) "Transitive arc parameter"		;# TODO
+set geoEasyMsg(arcAlpha) "Alpha: %s  Beta: %s"		;# TODO
+set geoEasyMsg(arcHeader) "  Point id          E              N"		;# TODO
